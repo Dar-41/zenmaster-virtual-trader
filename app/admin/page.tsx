@@ -41,7 +41,7 @@ export default function AdminPage() {
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001');
+    const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL || undefined);
     setSocket(newSocket);
 
     newSocket.on('connect', () => {

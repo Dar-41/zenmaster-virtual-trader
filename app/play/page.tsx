@@ -44,7 +44,7 @@ export default function PlayPage() {
   const router = useRouter();
   const roomCode = searchParams.get('roomCode') || '';
   const playerName = searchParams.get('name') || '';
-  
+
   const [socket, setSocket] = useState<Socket | null>(null);
   const [room, setRoom] = useState<Room | null>(null);
   const [player, setPlayer] = useState<Player | null>(null);
@@ -66,7 +66,8 @@ export default function PlayPage() {
       return;
     }
 
-    const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001');
+    // Use relative path (monolith) or provided URL
+    const newSocket = io(process.env.NEXT_PUBLIC_SOCKET_URL || undefined);
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
@@ -134,16 +135,16 @@ export default function PlayPage() {
       setPlayer(playerData);
       const tradeType = trade.type.toUpperCase();
       const pnlText = trade.pnl !== undefined ? ` (P&L: ${formatINR(trade.pnl)})` : '';
-      setToast({ 
-        message: `${tradeType} executed: ${trade.quantity} @ ${formatINR(trade.price)}${pnlText}`, 
-        type: 'success' 
+      setToast({
+        message: `${tradeType} executed: ${trade.quantity} @ ${formatINR(trade.price)}${pnlText}`,
+        type: 'success'
       });
-      
+
       // Play sound effect
       if (typeof window !== 'undefined' && 'Audio' in window) {
         const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTYIG2m98OSfTQ8MUKfj8LZjHAY4kdfyzHksBSR3x/DdkEAKFF606euoVRQKRp/g8r5sIQUrgc7y2Yk2CBtpvfDkn00PDFCn4/C2YxwGOJHX8sx5LAUkd8fw3ZBAC');
         audio.volume = 0.3;
-        audio.play().catch(() => {});
+        audio.play().catch(() => { });
       }
     });
 
@@ -270,10 +271,10 @@ export default function PlayPage() {
           {/* Right Column - Stats and Leaderboard */}
           <div className="space-y-6">
             <PlayerStats player={player} currentPrice={currentPrice} />
-            <GameStats 
-              player={player} 
-              currentPrice={currentPrice} 
-              timeRemaining={timeRemaining} 
+            <GameStats
+              player={player}
+              currentPrice={currentPrice}
+              timeRemaining={timeRemaining}
             />
             <Leaderboard leaderboard={leaderboard} currentPlayerId={player.id} />
           </div>
