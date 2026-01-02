@@ -2,6 +2,7 @@
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Dar-41/zenmaster-virtual-trader)
 [![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/Dar-41/zenmaster-virtual-trader&branch=main&name=zenmaster-trader)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Dar-41/zenmaster-virtual-trader)
 
 VT SONA: A next-gen Virtual trading dashboard with automated technical analysis, risk management tools, and real-time market insights. Visualizes SMC, EMAs, and RSI on interactive charts.
 
