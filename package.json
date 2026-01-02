@@ -16,8 +16,7 @@
     "deploy": "./deploy.sh",
     "deploy:netlify": "netlify deploy --prod",
     "deploy:vercel": "vercel --prod",
-    "deploy:railway": "railway up",
-    "postinstall": "npm install --production || true"
+    "deploy:railway": "railway up"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
